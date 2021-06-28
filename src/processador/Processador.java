@@ -7,7 +7,13 @@ import boleto.Boleto;
 public class Processador {
 
 	public static void ProcessaBoletos(ArrayList<Boleto> boletos, Fatura fatura) {
-		if (boletos.get(0).valorPago < fatura.valorTotal) {
+		double valorTotalPago = 0;
+
+		for(Boleto boleto : boletos) {
+			valorTotalPago += boleto.valorPago;
+		}
+
+		if (valorTotalPago < fatura.valorTotal) {
 			fatura.pago = false;
 		}
 		else {
